@@ -12,9 +12,13 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+
+
+//signup页面
 const Page = () => {
   const [countryCode, setCountryCode] = useState('+49');
   const [phoneNumber, setPhoneNumber] = useState('');
+  // 用于调整singnup按钮的位置，ios设备偏移值为80，android设备偏移值为0
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 80 : 0;
   const router = useRouter();
   const { signUp } = useSignUp();
@@ -34,8 +38,11 @@ const Page = () => {
     }
   };
 
-  return (
-    <KeyboardAvoidingView
+
+//页面显示
+  return ( 
+    //激活键盘不遮挡signup按钮
+     <KeyboardAvoidingView  
       style={{ flex: 1 }}
       behavior="padding"
       keyboardVerticalOffset={keyboardVerticalOffset}>
@@ -60,7 +67,7 @@ const Page = () => {
             onChangeText={setPhoneNumber}
           />
         </View>
-
+        {/* replace属性是替换当前页面 */}
         <Link href={'/login'} replace asChild>
           <TouchableOpacity>
             <Text style={defaultStyles.textLink}>Already have an account? Log in</Text>
@@ -72,7 +79,9 @@ const Page = () => {
         <TouchableOpacity
           style={[
             defaultStyles.pillButton,
+            // 空显示Colors.primary,非空显示Colors.primaryMuted
             phoneNumber !== '' ? styles.enabled : styles.disabled,
+            // 与键盘底部行间距20
             { marginBottom: 20 },
           ]}
           onPress={onSignup}>
@@ -82,6 +91,9 @@ const Page = () => {
     </KeyboardAvoidingView>
   );
 };
+
+
+//styles，样式控制
 const styles = StyleSheet.create({
   inputContainer: {
     marginVertical: 40,

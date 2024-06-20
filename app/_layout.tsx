@@ -84,6 +84,8 @@ const InitialLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+
+      {/* signup入口点 */}
       <Stack.Screen
         name="signup"
         options={{
@@ -91,14 +93,16 @@ const InitialLayout = () => {
           headerBackTitle: '',
           headerShadowVisible: false,
           headerStyle: { backgroundColor: Colors.background },
+          // 页面返回键
           headerLeft: () => (
+            // 用router.back()回调函数返回上一页
             <TouchableOpacity onPress={router.back}>
               <Ionicons name="arrow-back" size={34} color={Colors.dark} />
             </TouchableOpacity>
           ),
         }}
       />
-
+      {/* login入口点 */}
       <Stack.Screen
         name="login"
         options={{
@@ -149,6 +153,7 @@ const InitialLayout = () => {
           ),
           headerLargeTitle: true,
           headerTransparent: true,
+          // login页面添加帮助入口
           headerRight: () => (
             <View style={{ flexDirection: 'row', gap: 10 }}>
               <TouchableOpacity>
